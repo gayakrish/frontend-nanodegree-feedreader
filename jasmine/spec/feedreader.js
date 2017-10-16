@@ -32,15 +32,30 @@ $(function() {
          * and that the URL is not empty.
          */
 
+         it('each feed has a URL defined and URL is not empty', function() {
+            for(let feed of allFeeds) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url).not.toBe(0);
+            }
+         });
+
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+         it('each feed has a name defined and name is not empty', function() {
+            for(let feed of allFeeds) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name).not.toBe(0);
+            }
+         });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    describe('The menu', function() {
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -48,11 +63,22 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
+         it('is hidden by default' , function() {
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+         });
+
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          it('is displayed or hidden when clicked', function() {
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            $('.menu-icon-link').click();
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+          });
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
@@ -62,6 +88,19 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+    describe('Initial Entries', function() {
+
+       beforeEach(function(done){
+            loadFeed(0, function() {
+               done();
+           });
+        });
+
+        it('has atleast one element with the feed container', function(done){
+            expect($('.feed').find('a.entry-link').length).toBeGreaterThan(0);
+            done();
+        });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
@@ -69,4 +108,22 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    describe('New Feed Selection', function(){
+        let feedContent1, feedContent2;
+
+        beforeEach(function(done){
+            loadFeed(0, function(){
+                feedContent1 = $('.feed').html();
+                done();
+            });
+
+            loadFeed(1, function(done) {
+                feedContent2 = $('.feed').html();
+            });
+        });
+
+        it('has new feed content', function() {
+            expect(feedContent1).not.toBe(feedContent2);
+        });
+    });
 }());
