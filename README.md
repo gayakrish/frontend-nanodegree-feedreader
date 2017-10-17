@@ -10,9 +10,9 @@ This project is aimed at testing the web-based application that reads RSS feeds,
 
 ## Test cases
 1. To test that 'allFeeds' is defined and not empty
-2. To test that each feed in the `allFeeds` object has a URL defined and that the URL is not empty.
-3. To test that each feed in the `allFeeds` object and has a name defined and that the name is not empty.
+2. To test that each feed in the `allFeeds` object has a URL defined and the URL is not empty.
+3. To test that each feed in the `allFeeds` object and has a name defined and the name is not empty.
 4. To test that the Menu element is hidden by default.
 5. To test that the menu changes visibility when the menu icon is clicked. This test has two expectations: does the menu display when clicked and does it hide when clicked again.
-6. To test that when the `loadFeed` function is called and completes its work, there is at least a single `.entry` element within the `.feed` container.
-7. To test that when a new feed is loaded by the `loadFeed` function that the content actually changes.
+6. To test that when the `loadFeed` function is called and after it completes its work, there is at least a single `.entry` element within the `.feed` container.
+7. To test that when a new feed is loaded by the `loadFeed` function, the content actually changes.
