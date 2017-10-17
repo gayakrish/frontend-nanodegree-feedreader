@@ -74,9 +74,8 @@ $(function() {
             loadFeed(0, done);
         });
 
-        it('has atleast one element with the feed container', function(done){
+        it('has atleast one element with the feed container', function(){
             expect($('.feed').find('.entry-link .entry').length).toBeGreaterThan(0);
-            done();
         });
     });
 
